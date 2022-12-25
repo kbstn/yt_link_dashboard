@@ -4,7 +4,6 @@ import pandas as pd
 
 st.set_page_config(layout="wide")
 
-
 st.title('My yt Links')
 st.markdown('This is a simple Streamlit app with a multiselect widget and a function that returns a dataframe containing yt links.')
 
