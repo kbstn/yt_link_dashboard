@@ -87,6 +87,8 @@ def create_yt_df(channel_names, num_videos=40):
     # Concatenate all the dataframes and sort by 'publish_delta'
     result_df = pd.concat(channel_dfs, axis=0)
     result_df = result_df.drop(columns=['channel'])
+    result_df['Url'] = '<a href=' + result_df['link'] + '><div>' + result_df['title'] + '</div></a>'
+    result_df = result_df[['Url','duration','publishedTime','channel_name','publish_delta']]
     result_df = result_df.sort_values(by='publish_delta')
     
     return result_df
@@ -95,7 +97,6 @@ if __name__ == "__main__":
     # This is an example list of channel names that you want to scrape
     channel_names = ['TheViper', 'T90Official', 'SpiritOfTheLaw','Veritasium','Gamestar','PBS Eons','Kurzgesagt - in a Nutshell','Hashoshi','Be Smart']  
     result=create_yt_df(channel_names,num_videos=100)
-    result['Url'] = '<a href=' + result['link'] + 'target="_blank" rel="noopener noreferrer"><div>' + result['title'] + '</div></a>'
     # Convert the DataFrame to HTML
     html = result.to_html(render_links=True,
         escape=False)
