@@ -86,9 +86,13 @@ def create_yt_df(channel_names, num_videos=40):
     
     # Concatenate all the dataframes and sort by 'publish_delta'
     result_df = pd.concat(channel_dfs, axis=0)
+    # drop unwanted cols
     result_df = result_df.drop(columns=['channel'])
+    # create a url col as clickable href containing link and video name
     result_df['Url'] = '<a href=' + result_df['link'] + '><div>' + result_df['title'] + '</div></a>'
+    # define which cols to show
     result_df = result_df[['Url','duration','publishedTime','channel_name','publish_delta']]
+    # sort data by time
     result_df = result_df.sort_values(by='publish_delta')
     
     return result_df

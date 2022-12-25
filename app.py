@@ -20,8 +20,6 @@ channel_names = ['TheViper', 'T90Official - Age Of Empires 2', 'Spirit Of The La
 default_options = st.multiselect(
     'Select your search terms',search_terms
       ,search_terms)
-    # ['Kurzgesagt - in a Nutshell'] )
-
 
 # Add the text input widget to the app
 # Split the input string into a list of stringszz
@@ -29,5 +27,7 @@ default_options = st.multiselect(
 num_videos = st.number_input('How many searches to perform for every search?',value= 40)
 # # Call the create_yt_df function and pass the results from the multiselect widget as a list
 df = create_yt_df(default_options,num_videos=num_videos)
+# filter the results by cahnnel names to drop search results from other channels that contain the same name
 df2= df[df['channel_name'].isin(channel_names)]
+# write result df to dashboard as a html file with clickable hyperlinks
 st.write(df2.to_html(render_links=True,escape=False, index=False), unsafe_allow_html=True)
