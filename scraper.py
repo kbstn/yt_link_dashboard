@@ -3,9 +3,6 @@ import datetime
 from youtubesearchpython import *
 import numpy as np
 
-import numpy as np
-import datetime
-
 def string_to_delta(string_delta):
     """Convert a string representing a time duration, such as '5 days ago', into a datetime.timedelta object.
     
