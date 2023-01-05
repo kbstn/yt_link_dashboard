@@ -4,7 +4,7 @@ services:
     build:
       context: ./
     ports:
-      - 8506:8506
+      - 8507:8507
     volumes:
       - ./:/app
     networks:
@@ -17,7 +17,7 @@ services:
       - "traefik.http.routers.yt_link_dashboard-ssl.tls.certresolver=http"
       - "traefik.http.routers.yt_link_dashboard-ssl.middlewares=default@file"
       - "traefik.http.routers.yt_link_dashboard-ssl.service=yt_link_dashboard-ssl"
-      - "traefik.http.services.yt_link_dashboard-ssl.loadbalancer.server.port=8506"
+      - "traefik.http.services.yt_link_dashboard-ssl.loadbalancer.server.port=8507"
       - "traefik.docker.network=proxy"
 
 networks:
