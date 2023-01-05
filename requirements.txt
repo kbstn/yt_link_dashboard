@@ -1,4 +1,4 @@
 streamlit
 pandas
-youtubesearchpython
+youtube-search-python
 numpy
