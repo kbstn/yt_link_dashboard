@@ -1,0 +1,25 @@
+version: '3'
+services:
+  yt_link_dashboard :
+    build:
+      context: ./
+    ports:
+      - 8506:8506
+    volumes:
+      - ./:/app
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.yt_link_dashboard-ssl.entrypoints=https"
+      - "traefik.http.routers.yt_link_dashboard-ssl.rule=Host(`yt.koni.monster`)"
+      - "traefik.http.routers.yt_link_dashboard-ssl.tls=true"
+      - "traefik.http.routers.yt_link_dashboard-ssl.tls.certresolver=http"
+      - "traefik.http.routers.yt_link_dashboard-ssl.middlewares=default@file"
+      - "traefik.http.routers.yt_link_dashboard-ssl.service=yt_link_dashboard-ssl"
+      - "traefik.http.services.yt_link_dashboard-ssl.loadbalancer.server.port=8506"
+      - "traefik.docker.network=proxy"
+
+networks:
+  proxy:
+    external: true
